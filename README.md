@@ -1,5 +1,3 @@
-**Repository Name: web-dasar-phpnative**
-
 **Description:**
 Repository ini berisi dasar-dasar pengembangan web menggunakan PHP native. Di dalamnya termasuk berbagai file konfigurasi, library, dan modul penting untuk memulai proyek web berbasis PHP. Berikut adalah ringkasan dari isi repository ini:
 
