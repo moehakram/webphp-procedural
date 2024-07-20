@@ -23,15 +23,17 @@ require_once __DIR__ . '/app/services/remember.php'; //Fitur "ingat saya" untuk 
 
 const ROUTES = [
     'POST' => [
-        '/users/login'      => 'auth:login', // file_name:function_name
-        '/users/register'   => 'auth:register',
+        '/users/login'      => 'auth@login', // file_name:function_name
+        '/users/register'   => 'auth@register',
     ],
     'GET' => [
-        '/'                 => 'home:index',
-        '/home'             => 'home:home',
-        '/users/login'      => 'auth:showLogin',
-        '/users/register'   => 'auth:showRegister',
-        '/users/activate'   => 'remember_me:activate',
-        '/users/logout'     => 'auth:logout',
+        '/'                 => 'home@index',
+        '/home'             => 'home@home',
+        '/users/login'      => 'auth@showLogin',
+        '/users/register'   => 'auth@showRegister',
+        '/users/activate'   => 'remember_me@activate',
+        '/users/logout'     => 'auth@logout',
+        '/tes/(\d+)'        => 'home@testing',
+        '/tes/(\w+)'        => 'home@testing',
     ]
 ];

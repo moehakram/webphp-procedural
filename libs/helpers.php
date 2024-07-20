@@ -39,14 +39,14 @@ function view(string $filename, array $data = [])
     exit;
 }
 
-function dispatch_routes(string $method, string $path) : ?string
+function dispatch_routes(string $method, string $path) : ?array
 {
     $clean = fn($path) => ($path === '/') ? $path : str_replace(['%20', ' '], '-', rtrim($path, '/'));
     foreach (ROUTES[$method] ?? [] as $key => $controller) {
         $pattern = '#^' . $clean($key) . '$#';
         if (preg_match($pattern, $clean($path), $variabels)) {
             array_shift($variabels);
-            return $controller;
+            return [$controller, $variabels];
         }
     }
     return null;
@@ -54,7 +54,7 @@ function dispatch_routes(string $method, string $path) : ?string
 
 function controller(string $filename, array $keys = []) : array
 {
-    [$file, $callback] = explode(':',$filename, 2);
+    [$file, $callback] = explode('@',$filename, 2);
 
     $pathController = __DIR__ . '/../app/controllers/' . $file . '.php';
     

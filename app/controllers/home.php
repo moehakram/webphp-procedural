@@ -17,3 +17,7 @@ function index(){
     require_guest();
     view('index');
 }
+
+function testing(array $params){
+    echo $params[0]; 
+}
