@@ -85,8 +85,7 @@ function request_method(): string
 
 function request_path(): string
 {
-    $path = fn($path) => $path ? rtrim($path, '/') : '/';
-    return $path($_SERVER['PATH_INFO'] ?? '');
+    return $_SERVER['PATH_INFO'] ?? '/';
 }
 
 /**
