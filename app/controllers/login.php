@@ -1,5 +1,8 @@
 <?php
 
+require_guest();
+
+$title = 'Login';
 $inputs = [];
 $errors = [];
 
@@ -33,4 +36,4 @@ if (is_post_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
 
-return [$errors, $inputs];
+view('login', compact('errors', 'inputs', 'title'));

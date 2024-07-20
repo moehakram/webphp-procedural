@@ -1,2 +1,3 @@
-<p>Welcome <?= current_user() ?></p>
+
+<p>Welcome <?= $username ?></p>
 <a href="logout.php">Logout</a>

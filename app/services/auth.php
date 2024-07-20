@@ -139,14 +139,14 @@ function send_activation_email(string $email, string $activation_code): void
     
     write_log("activation_link : " . $activation_link);
 
-    $subject = 'Please activate your account';
-    $message = <<<MESSAGE
-            Hi,
-            Please click the following link to activate your account:
-            $activation_link
-            MESSAGE;
-    // email header
-    $header = "From:" . SENDER_EMAIL_ADDRESS;
+    // $subject = 'Please activate your account';
+    // $message = <<<MESSAGE
+    //         Hi,
+    //         Please click the following link to activate your account:
+    //         $activation_link
+    //         MESSAGE;
+    // // email header
+    // $header = "From:" . SENDER_EMAIL_ADDRESS;
 
     // send the email
     // mail($email, $subject, nl2br($message), $header);

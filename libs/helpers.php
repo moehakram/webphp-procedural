@@ -23,10 +23,10 @@ function write_log($message, $logfile = APP_LOG) {
 
 function view(string $filename, array $data = [])
 {
-    $pathView = fn($name) => rtrim( VIEW , '/') . "/$name.php";
+    $pathView = fn($name) => __DIR__ . '/../app/views/' . trim($name, '/') . '.php';
 
     if (!file_exists($body = $pathView($filename))) {
-        throw new Exception("File View '" . basename($body) . "' tidak ditemukan di [$body]");
+        throw new Exception("File View " . basename($body) . " tidak ditemukan di [$body]");
     }
     
     extract($data);
@@ -36,11 +36,18 @@ function view(string $filename, array $data = [])
     include  $pathView('inc/footer');
 
     echo ob_get_clean();
+    exit;
 }
 
-function controller(string $filename) : array
+function controller(string $filename)
 {
-    return require_once(__DIR__ . '/../app/controllers/' . $filename . '.php');
+    $pathController = __DIR__ . '/../app/controllers/' . trim($filename, '/') . '.php';
+
+    if (!file_exists($pathController)) {
+        throw new Exception("File Controller " . basename($pathController) . " tidak ditemukan di [$pathController]");
+    }
+
+    return require_once $pathController;
 }
 
 

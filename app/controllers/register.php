@@ -1,5 +1,8 @@
 <?php
 
+require_guest();
+
+$title = 'Register';
 $errors = [];
 $inputs = [];
 
@@ -26,6 +29,7 @@ if (is_post_request()) {
             'secure' => 'Password harus memiliki antara 8 hingga 64 karakter dan mengandung setidaknya satu angka, satu huruf kapital, satu huruf kecil, dan satu karakter khusus.'
         ],
         'password2' => [
+            'required' => 'Harap konfirmasi password di isi',
             'same' => 'Password tidak sama!'
         ],
         'agree' => [
@@ -60,4 +64,4 @@ if (is_post_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
 
-return [$errors, $inputs];
+view('register', compact('errors', 'inputs', 'title'));
