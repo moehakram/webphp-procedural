@@ -1,4 +1,4 @@
-<form action="/register" method="post">
+<form action="/users/register" method="post">
     <h1>Sign Up</h1>
     <div>
         <label for="username">Username:</label>
@@ -28,5 +28,5 @@
         <small><?= $errors['agree'] ?? '' ?></small>
     </div>
     <button type="submit">Register</button>
-    <footer>Already a member? <a href="/login">Login here</a></footer>
+    <footer>Already a member? <a href="/users/login">Login here</a></footer>
 </form>

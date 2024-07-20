@@ -63,14 +63,14 @@ function is_user_logged_in(): bool
 function require_login(): void
 {
     if (!is_user_logged_in()) {
-        redirect_to('/login');
+        redirect_to('/users/login');
     }
 }
 
 function require_guest(): void
 {
     if (is_user_logged_in()) {
-        redirect_to('/');
+        redirect_to('/home');
     }
 }
 
@@ -94,7 +94,7 @@ function logout(): void
         session_destroy();
 
         // redirect to the login page
-        redirect_to('/login');
+        redirect_to('/users/login');
     }
 }
 
@@ -114,8 +114,7 @@ function generate_activation_code(): string
 function send_activation_email(string $email, string $activation_code): void
 {
     // create the activation link
-    $activation_link = APP_URL . "/activate?email=$email&activation_code=$activation_code";
-    
+    $activation_link = sprintf(APP_URL . "/users/activate?email=%s&activation_code=%s", $email, $activation_code);
     write_log("activation_link : " . $activation_link);
 
     // $subject = 'Please activate your account';

@@ -39,15 +39,30 @@ function view(string $filename, array $data = [])
     exit;
 }
 
-function controller(string $filename)
+function dispatch_routes(string $method, string $path) : array
+{
+    $clean = fn($path) => ($path === '/') ? $path : str_replace(['%20', ' '], '-', rtrim($path, '/'));
+    foreach (ROUTES[$method] ?? [] as $key => $controller) {
+        $pattern = '#^' . $clean($key) . '$#';
+        if (preg_match($pattern, $clean($path), $variabels)) {
+            array_shift($variabels);
+            return [$controller, $variabels];
+        }
+    }
+    http_response_code(404);
+    echo 'Route Not Found';
+    exit;
+    return [];
+}
+
+function controller(string $filename, array $keys = [])
 {
     $pathController = __DIR__ . '/../app/controllers/' . trim($filename, '/') . '.php';
 
     if (!file_exists($pathController)) {
         throw new Exception("File Controller " . basename($pathController) . " tidak ditemukan di [$pathController]");
     }
-
-    return require_once $pathController;
+    require_once $pathController;
 }
 
 
@@ -63,8 +78,13 @@ function error_class(array $errors, string $field): string
     return isset($errors[$field]) ? 'error' : '';
 }
 
+function request_method(): string
+{
+    return strtoupper($_SERVER['REQUEST_METHOD']);
+}
 
-function request_path(){
+function request_path(): string
+{
     $path = fn($path) => $path ? rtrim($path, '/') : '/';
     return $path($_SERVER['PATH_INFO'] ?? '');
 }

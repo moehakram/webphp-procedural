@@ -20,3 +20,19 @@ require_once __DIR__ . '/app/models/user_tokens.php';
 // Memuat file services
 require_once __DIR__ . '/app/services/auth.php'; // Autentikasi pengguna
 require_once __DIR__ . '/app/services/remember.php'; //Fitur "ingat saya" untuk sesi
+
+
+const ROUTES = [
+    'POST' => [
+        '/users/login' => '_login',
+        '/users/register' => '_register',
+    ],
+    'GET' => [
+        '/' => 'index',
+        '/home' => 'home',
+        '/users/login' => 'login',
+        '/users/register' => 'register',
+        '/users/activate' => 'activate',
+        '/users/logout' => 'logout',
+    ]
+];
