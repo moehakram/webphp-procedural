@@ -135,7 +135,7 @@ function generate_activation_code(): string
 function send_activation_email(string $email, string $activation_code): void
 {
     // create the activation link
-    $activation_link = APP_URL . "/activate.php?email=$email&activation_code=$activation_code";
+    $activation_link = APP_URL . "/activate?email=$email&activation_code=$activation_code";
     
     write_log("activation_link : " . $activation_link);
 
