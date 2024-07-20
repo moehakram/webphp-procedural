@@ -1,5 +1,5 @@
 **Description:**
-Repository ini berisi dasar-dasar pengembangan web menggunakan PHP native. Di dalamnya termasuk berbagai file konfigurasi, library, dan modul penting untuk memulai proyek web berbasis PHP. Berikut adalah ringkasan dari isi repository ini:
+Repository ini berisi dasar-dasar pengembangan web menggunakan PHP native dengan pendekatan prosedural. Di dalamnya termasuk berbagai file konfigurasi, library, dan modul penting untuk memulai proyek web berbasis PHP. Berikut adalah ringkasan dari isi repository ini:
 
 - **Konfigurasi Aplikasi dan Database**: Termasuk file konfigurasi utama untuk aplikasi dan pengaturan koneksi database.
   - `config/app.php`
