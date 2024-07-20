@@ -11,11 +11,11 @@ $is_login = login($inputs['username'], $inputs['password'], isset($inputs['remem
 // account aktif
 var_dump($is_login); // true
 
-$inputs = [
+$inputs2 = [
     'username' => 'akram1235',
     'password' => 'pasworD#admin123',
     'remember_me' => 'yes'
 ];
-$is_login = login($inputs['username'], $inputs['password'], isset($inputs['remember_me']));
+$is_login2 = login($inputs2['username'], $inputs2['password'], isset($inputs2['remember_me']));
 // account non-aktif
-var_dump($is_login); // false
+var_dump($is_login2); // false

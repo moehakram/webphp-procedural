@@ -3,12 +3,11 @@
 require __DIR__ . '/../bootstrap.php';
 
 $inputs = [
-    'email' => 'testing4@email.com',
     'username' => 'akram1235',
+    'email' => 'testing4@email.com',
     'password' => 'pasworD#admin123',
     'password2' => 'pasworD#admin123',
-    'agree' => 'checked',
-    'activation_code' => generate_activation_code(),
+    'agree' => 'checked'
 ];
 
 $activation_code = generate_activation_code();
