@@ -20,13 +20,22 @@ function write_log($message, $logfile = APP_LOG) {
  * @param array $data
  * @return void
  */
-function view(string $filename, array $data = []): void
+
+function view(string $filename, array $data = [])
 {
-    // create variables from the associative array
-    foreach ($data as $key => $value) {
-        $$key = $value;
+    $pathView = fn($name) => rtrim( VIEW , '/') . "/$name.php";
+
+    if (!file_exists($body = $pathView($filename))) {
+        throw new Exception("File View '" . basename($body) . "' tidak ditemukan di [$body]");
     }
-    include __DIR__ . '/../app/views/' . $filename . '.php';
+    
+    extract($data);
+    ob_start();
+    include  $pathView('inc/header');
+    include $body;
+    include  $pathView('inc/footer');
+
+    echo ob_get_clean();
 }
 
 function controller(string $filename) : array
