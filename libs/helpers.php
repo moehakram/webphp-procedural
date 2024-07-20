@@ -39,30 +39,29 @@ function view(string $filename, array $data = [])
     exit;
 }
 
-function dispatch_routes(string $method, string $path) : array
+function dispatch_routes(string $method, string $path) : ?string
 {
     $clean = fn($path) => ($path === '/') ? $path : str_replace(['%20', ' '], '-', rtrim($path, '/'));
     foreach (ROUTES[$method] ?? [] as $key => $controller) {
         $pattern = '#^' . $clean($key) . '$#';
         if (preg_match($pattern, $clean($path), $variabels)) {
             array_shift($variabels);
-            return [$controller, $variabels];
+            return $controller;
         }
     }
-    http_response_code(404);
-    echo 'Route Not Found';
-    exit;
-    return [];
+    return null;
 }
 
-function controller(string $filename, array $keys = [])
+function controller(string $filename, array $keys = []) : array
 {
-    $pathController = __DIR__ . '/../app/controllers/' . trim($filename, '/') . '.php';
+    [$file, $callback] = explode(':',$filename, 2);
 
+    $pathController = __DIR__ . '/../app/controllers/' . $file . '.php';
+    
     if (!file_exists($pathController)) {
         throw new Exception("File Controller " . basename($pathController) . " tidak ditemukan di [$pathController]");
     }
-    require_once $pathController;
+    return [$pathController, '\\controllers\\'. $callback];
 }
 
 

@@ -13,26 +13,25 @@ require_once __DIR__ . '/libs/validation.php';     // Fungsi validasi input
 require_once __DIR__ . '/libs/filter.php';         // Fungsi penyaringan data
 require_once __DIR__ . '/libs/connection.php';     // Pengaturan koneksi database
 
-// Memuat file models
-require_once __DIR__ . '/app/models/users.php';
-require_once __DIR__ . '/app/models/user_tokens.php';
+// Memuat file repository
+require_once __DIR__ . '/app/repository/users.php';
+require_once __DIR__ . '/app/repository/user_tokens.php';
 
 // Memuat file services
 require_once __DIR__ . '/app/services/auth.php'; // Autentikasi pengguna
 require_once __DIR__ . '/app/services/remember.php'; //Fitur "ingat saya" untuk sesi
 
-
 const ROUTES = [
     'POST' => [
-        '/users/login' => '_login',
-        '/users/register' => '_register',
+        '/users/login'      => 'auth:login', // file_name:function_name
+        '/users/register'   => 'auth:register',
     ],
     'GET' => [
-        '/' => 'index',
-        '/home' => 'home',
-        '/users/login' => 'login',
-        '/users/register' => 'register',
-        '/users/activate' => 'activate',
-        '/users/logout' => 'logout',
+        '/'                 => 'home:index',
+        '/home'             => 'home:home',
+        '/users/login'      => 'auth:showLogin',
+        '/users/register'   => 'auth:showRegister',
+        '/users/activate'   => 'remember_me:activate',
+        '/users/logout'     => 'auth:logout',
     ]
 ];

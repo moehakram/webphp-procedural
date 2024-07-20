@@ -1,5 +1,7 @@
 <?php
 
+use function services\login;
+
 require __DIR__ . '/../bootstrap.php';
 
 $inputs = [
