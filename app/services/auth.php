@@ -39,27 +39,6 @@ function log_user_in(array $user): bool
     return false;
 }
 
-function remember_me(int $user_id, int $day = 30)
-{
-    [$selector, $validator, $token] = generate_tokens();
-
-    // remove all existing token associated with the user id
-    delete_user_token($user_id);
-
-    // set expiration date
-    $expired_seconds = time() + 60 * 60 * 24 * $day;
-
-    // insert a token to the database
-    $hash_validator = password_hash($validator, PASSWORD_DEFAULT);
-    $expiry = date('Y-m-d H:i:s', $expired_seconds);
-
-    if (insert_user_token($user_id, $selector, $hash_validator, $expiry)) {
-        setcookie('remember_me', $token, $expired_seconds);
-        write_log('remember_me id : ' . $user_id);
-    }
-
-}
-
 function is_user_logged_in(): bool
 {
     // check the session
