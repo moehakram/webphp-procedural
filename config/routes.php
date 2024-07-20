@@ -10,7 +10,7 @@ return [
         '/home'             => 'home@home',
         '/users/login'      => 'auth@showLogin',
         '/users/register'   => 'auth@showRegister',
-        '/users/activate'   => 'remember_me@activate',
+        '/users/activate'   => 'remember@activate',
         '/users/logout'     => 'auth@logout',
         '/tes/(\d+)'        => 'home@testing',
         '/tes/(\w+)'        => 'home@testing',
