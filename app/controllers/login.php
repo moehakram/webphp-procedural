@@ -1,9 +1,5 @@
 <?php
 
-if (is_user_logged_in()) {
-    redirect_to('index.php');
-}
-
 $inputs = [];
 $errors = [];
 
@@ -36,3 +32,5 @@ if (is_post_request()) {
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
+
+return [$errors, $inputs];

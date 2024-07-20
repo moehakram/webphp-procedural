@@ -1,9 +1,5 @@
 <?php
 
-if (is_user_logged_in()) {
-    redirect_to('index.php');
-}
-
 $errors = [];
 $inputs = [];
 
@@ -48,12 +44,11 @@ if (is_post_request()) {
 
     $activation_code = generate_activation_code();
 
-    if (register_user($inputs['email'], $u = $inputs['username'], $p=$inputs['password'], $activation_code)) {
+    if (register_user($inputs['email'], $inputs['username'], $inputs['password'], $activation_code)) {
         write_log([
-            "username" => $u,
-            "password" => $p
+            "username" => $inputs['username'],
+            "password" => $inputs['password']
         ]);
-        // send the activation email
         send_activation_email($inputs['email'], $activation_code);
 
         redirect_with_message(
@@ -61,7 +56,8 @@ if (is_post_request()) {
             'Silakan periksa email Anda untuk mengaktifkan akun Anda sebelum masuk.'
         );
     }
-
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');
 }
+
+return [$errors, $inputs];

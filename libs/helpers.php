@@ -26,7 +26,12 @@ function view(string $filename, array $data = []): void
     foreach ($data as $key => $value) {
         $$key = $value;
     }
-    require_once __DIR__ . '/../inc/' . $filename . '.php';
+    include __DIR__ . '/../app/views/' . $filename . '.php';
+}
+
+function controller(string $filename) : array
+{
+    return require_once(__DIR__ . '/../app/controllers/' . $filename . '.php');
 }
 
 

@@ -1,5 +1,5 @@
 <?php
+require __DIR__ . '/../bootstrap.php';
 
-require __DIR__ . '/../src/init.php';
 require_login();
 logout();

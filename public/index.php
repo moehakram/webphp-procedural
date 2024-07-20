@@ -1,9 +1,10 @@
 <?php
-require __DIR__ . '/../src/init.php';
+require __DIR__ . '/../bootstrap.php';
 require_login();
+view('inc/header', ['title' => 'Dashboard']);
 ?>
 
-<?php view('header', ['title' => 'Dashboard']) ?>
 <p>Welcome <?= current_user() ?></p>
 <a href="logout.php">Logout</a>
-<?php view('footer'); ?>
+
+<?php view('inc/footer'); ?>
