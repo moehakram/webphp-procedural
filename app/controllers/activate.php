@@ -13,7 +13,7 @@ if (is_get_request()) {
 
         if ($user && activate_user($user['id'])) {
             redirect_with_message(
-                'login.php',
+                '/login',
                 'Akun Anda telah berhasil diaktifkan. Silakan login di sini.'
             );
         }
@@ -21,7 +21,7 @@ if (is_get_request()) {
 }
 
 redirect_with_message(
-    'register.php',
+    '/register',
     'Tautan aktivasi tidak valid, silakan daftarkan kembali.',
     FLASH_ERROR
 );

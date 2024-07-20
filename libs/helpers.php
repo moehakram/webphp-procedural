@@ -63,6 +63,12 @@ function error_class(array $errors, string $field): string
     return isset($errors[$field]) ? 'error' : '';
 }
 
+
+function request_path(){
+    $path = fn($path) => $path ? rtrim($path, '/') : '/';
+    return $path($_SERVER['PATH_INFO'] ?? '');
+}
+
 /**
  * Return true if the request method is POST
  *

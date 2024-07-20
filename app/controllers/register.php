@@ -40,7 +40,7 @@ if (is_post_request()) {
     [$inputs, $errors] = filter($_POST, $fields, $messages);
 
     if ($errors) {
-        redirect_with('register.php', [
+        redirect_with('/register', [
             'inputs' => $inputs,
             'errors' => $errors
         ]);
@@ -56,7 +56,7 @@ if (is_post_request()) {
         send_activation_email($inputs['email'], $activation_code);
 
         redirect_with_message(
-            'login.php',
+            '/login',
             'Silakan periksa email Anda untuk mengaktifkan akun Anda sebelum masuk.'
         );
     }

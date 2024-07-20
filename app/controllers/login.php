@@ -17,20 +17,20 @@ if (is_post_request()) {
     ]);
 
     if ($errors) {
-        redirect_with('login.php', ['errors' => $errors, 'inputs' => $inputs]);
+        redirect_with('/login', ['errors' => $errors, 'inputs' => $inputs]);
     }
 
     if (!login($inputs['username'], $inputs['password'], isset($inputs['remember_me']))) {
 
         $errors['login'] = 'Invalid username or password';
 
-        redirect_with('login.php', [
+        redirect_with('/login', [
             'errors' => $errors,
             'inputs' => $inputs
         ]);
     }
 
-    redirect_to('index.php');
+    redirect_to('/');
 
 } else if (is_get_request()) {
     [$errors, $inputs] = session_flash('errors', 'inputs');

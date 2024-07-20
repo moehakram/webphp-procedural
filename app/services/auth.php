@@ -84,14 +84,14 @@ function is_user_logged_in(): bool
 function require_login(): void
 {
     if (!is_user_logged_in()) {
-        redirect_to('login.php');
+        redirect_to('/login');
     }
 }
 
 function require_guest(): void
 {
     if (is_user_logged_in()) {
-        redirect_to('index.php');
+        redirect_to('/');
     }
 }
 
@@ -115,7 +115,7 @@ function logout(): void
         session_destroy();
 
         // redirect to the login page
-        redirect_to('login.php');
+        redirect_to('/login');
     }
 }
 

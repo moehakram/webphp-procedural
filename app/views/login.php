@@ -4,7 +4,7 @@
     </div>
 <?php endif ?>
 
-<form action="login.php" method="post">
+<form action="/login" method="post">
     <h1>Login</h1>
     <div>
         <label for="username">Username:</label>
@@ -29,7 +29,7 @@
     <section>
         <button type="submit">Login</button>
         
-    <footer>Not a member yet? <a href="register.php">Register here</a></footer>
+    <footer>Not a member yet? <a href="/register">Register here</a></footer>
         
     </section>
 </form>
