@@ -41,7 +41,7 @@ function view(string $filename, array $data = [])
 
 function dispatch_routes(string $method, string $path) : ?array
 {
-    $clean = fn($path) => ($path === '/') ? $path : str_replace(['%20', ' '], '-', rtrim($path, '/'));
+    $clean = fn($path) => str_replace(['%20', ' '], '-', rtrim($path, '/')) ?: '/';
     foreach (ROUTES[$method] ?? [] as $key => $controller) {
         $pattern = '#^' . $clean($key) . '$#';
         if (preg_match($pattern, $clean($path), $variabels)) {
