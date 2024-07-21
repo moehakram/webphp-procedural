@@ -46,13 +46,13 @@ function dispatch_routes(string $method, string $path) : ?array
         $pattern = '#^' . $clean($key) . '$#';
         if (preg_match($pattern, $clean($path), $variabels)) {
             array_shift($variabels);
-            return [$controller, $variabels];
+            return controller($controller, $variabels);
         }
     }
     return null;
 }
 
-function controller(string $filename, array $keys = []) : array
+function controller(string $filename, array $params) : array
 {
     [$file, $callback] = explode('@',$filename, 2);
 
@@ -61,7 +61,7 @@ function controller(string $filename, array $keys = []) : array
     if (!file_exists($pathController)) {
         throw new Exception("File Controller " . basename($pathController) . " tidak ditemukan di [$pathController]");
     }
-    return [$pathController, '\\controllers\\'. $callback];
+    return [$pathController, '\\controllers\\'. $callback, $params];
 }
 
 
