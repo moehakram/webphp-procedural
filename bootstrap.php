@@ -22,3 +22,17 @@ require_once __DIR__ . '/app/services/auth.php'; // Autentikasi pengguna
 require_once __DIR__ . '/app/services/remember.php'; //Fitur "ingat saya" untuk sesi
 
 define('ROUTES',  require __DIR__ . '/config/routes.php');
+
+set_exception_handler(function(\Throwable $ex) {
+
+    $time = date('Y-m-d H:i:s');
+    $message = "[{$time}] Uncaught exception: " . $ex->getMessage() . "\n";
+    $message .= "In file: " . $ex->getFile() . " on line " . $ex->getLine() . "\n";
+    $message .= "Stack trace:\n" . $ex->getTraceAsString() . "\n";
+
+    // Menulis log ke file
+    error_log($message, 3, __DIR__ . '/logs/errors.log');
+
+    // Mengeluarkan pesan ke pengguna
+    echo 'Whoops, looks like something went wrong!';
+});
