@@ -12,4 +12,4 @@ if(!$result){
 [$controller, $callback] = controller($result);
 
 require_once $controller;
-$callback($params);
+$callback(...$params);

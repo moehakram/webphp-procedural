@@ -18,6 +18,6 @@ function index(){
     view('index');
 }
 
-function testing(array $params){
-    echo $params[0]; 
+function testing($id){
+    echo $id; 
 }
