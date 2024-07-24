@@ -1,6 +1,8 @@
 <?php
 namespace controllers;
 
+use function repository\activate_user;
+use function repository\find_unverified_user;
 use function repository\register_user;
 use function services\filterDataRegister;
 use function services\generate_activation_code;
@@ -91,4 +93,30 @@ function showRegister(){
 function logout(){
     require_login();
     serviceLogout();
+}
+
+function activate(){
+    // sanitize the email & activation code
+    [$inputs, $errors] = filter($_GET, [
+        'email' => 'string|required|email',
+        'activation_code' => 'string|required'
+    ]);
+
+    if (!$errors) {
+
+        $user = find_unverified_user($inputs['activation_code'], $inputs['email']);
+
+        if ($user && activate_user($user['id'])) {
+            redirect_with_message(
+                '/users/login',
+                'Akun Anda telah berhasil diaktifkan. Silakan login di sini.'
+            );
+        }
+    }
+
+    redirect_with_message(
+        '/users/register',
+        'Tautan aktivasi tidak valid, silakan daftarkan kembali.',
+        FLASH_ERROR
+    );
 }
