@@ -1,5 +1,5 @@
 **Deskripsi:**
-Repository ini berisi dasar-dasar pengembangan web berbasis **PHP native dengan pendekatan prosedural**. Di dalamnya termasuk berbagai file konfigurasi, library, dan modul penting untuk memulai proyek web berbasis PHP. Proyek ini menerapkan pola desain SVC (Service-View-Controller) atau lebih tepatnya MVC untuk menjaga kode tetap terorganisir dan mudah dipelihara, yang terinspirasi dari [ProgrammerZamanNow](https://github.com/programmerZamanNow). Berikut adalah ringkasan dari isi repository ini:
+Repository ini berisi dasar-dasar pengembangan web berbasis **PHP native dengan pendekatan prosedural**. Di dalamnya termasuk berbagai file konfigurasi, library, dan modul penting untuk memulai proyek web berbasis PHP. Proyek ini menerapkan pola desain SVC (Service-View-Controller) atau lebih tepatnya MVC.
 
 - **Konfigurasi Aplikasi dan Database**: Termasuk file konfigurasi utama untuk aplikasi dan pengaturan koneksi database.
   - `config/app.php`
